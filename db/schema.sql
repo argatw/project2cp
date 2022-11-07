@@ -14,8 +14,8 @@ create table user (
 create table cp_info (
     car_park_no varchar(16),
     address varchar(256),
-    x_coord dec(10,9),
-    y_coord dec(10,9),
+    x_coord VARCHAR(128),
+    y_coord VARCHAR(128),
     car_park_type varchar(256),
     type_of_parking_system varchar(256),
     short_term_parking varchar(256),
