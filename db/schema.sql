@@ -32,6 +32,7 @@ create table favourite (
     favId int auto_increment not null,
     email varchar(64) not null, 
     car_park_no varchar(64) not null,
+    address varchar(256) not null
 
     primary key(favId),
 
