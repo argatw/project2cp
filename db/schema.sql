@@ -42,3 +42,15 @@ create table favourite (
     constraint fk_car_park_no
     foreign key(car_park_no) references cp_info(car_park_no)
 );
+
+create table report (
+	report_id int auto_increment,
+    email varchar(64) not null,
+    car_park_no varchar(64) not null,
+    description varchar(128) not null,
+    media_type varchar(64) not null,
+    pic mediumblob not null,
+    
+    primary key(report_id)
+    
+);

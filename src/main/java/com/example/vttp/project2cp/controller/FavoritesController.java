@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.vttp.project2cp.model.CarparkResponse;
 import com.example.vttp.project2cp.model.Favorites;
+import com.example.vttp.project2cp.model.User;
+import com.example.vttp.project2cp.service.EmailService;
 import com.example.vttp.project2cp.service.FavoritesService;
 
 import jakarta.json.Json;
@@ -31,6 +33,9 @@ public class FavoritesController {
 
     @Autowired
     private FavoritesService favService;
+
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping(path = "/addToFavs", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> insertFavItems(@RequestBody String payload) {
@@ -60,6 +65,29 @@ public class FavoritesController {
             return ResponseEntity.ok(arrayBuilder.build().toString());
     }
 
+    // to do:  USE @REQUESTBODY String payload , NOT REQUESTPARAM
+    @PostMapping(path="/emailFavorites", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> sendFavItems(@RequestBody User user) {
+        List<Favorites> favCarparks = favService.getFavoritesOfUser(user.getEmail());
+        // StringBuilder builder = new StringBuilder();
+        // for (Favorites favCarpark : favCarparks) {
+        //     builder.append(favCarpark);
+        // }
+        // String content = builder.toString();
+        // System.out.println(content);
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        for (Favorites favCarpark: favCarparks)
+            arrayBuilder.add(favCarpark.favToJson());
+
+        emailService.sendEmail(user.getEmail(), "Your favorite carparks::", arrayBuilder.build().toString());
+
+        CarparkResponse r = new CarparkResponse();
+        r.setMessage(">>Email success");
+        r.setStatus(200);
+
+        return ResponseEntity.status(HttpStatus.OK).body(r.toJson().toString());
+    }
+
     @DeleteMapping(path = "/deleteFavorites")
     public ResponseEntity<String> deleteCartItemByUser(@RequestParam String email, @RequestParam String carparkNum) {
         try {
@@ -77,5 +105,7 @@ public class FavoritesController {
         return ResponseEntity.status(HttpStatus.OK).body(r.toJson().toString());
 
     }
+
+
     
 }

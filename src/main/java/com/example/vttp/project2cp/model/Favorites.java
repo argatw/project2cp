@@ -58,4 +58,13 @@ public class Favorites {
             .add("email", email)
             .build();
     }
+
+    // public JsonObject favEmailToJson() {
+    //     return Json.createObjectBuilder()
+    //         .add("email", email)
+    //         .add("favorites", Json.createObjectBuilder()
+    //             .add("address", address)
+    //             .add("carpark_num", carparkNum))
+    //         .build();
+    // }
 }
