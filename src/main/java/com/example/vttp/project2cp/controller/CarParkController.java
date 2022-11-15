@@ -25,7 +25,7 @@ import jakarta.json.JsonArrayBuilder;
 
 @RestController
 @RequestMapping(path="/carpark" , produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin
+// @CrossOrigin
 public class CarParkController {
 
     @RequestMapping(value = "/greeting", method = RequestMethod.GET)
