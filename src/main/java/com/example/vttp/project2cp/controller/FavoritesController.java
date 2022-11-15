@@ -28,7 +28,7 @@ import jakarta.json.JsonObject;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class FavoritesController {
 
     @Autowired
