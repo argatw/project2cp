@@ -1,6 +1,6 @@
 # project2cp
 
-Deployment link at: https://arga-miniproject2-carpark.herokuapp.com/
+Deployment link (updated with Railway deployment link link): https://project2cp-production.up.railway.app/
 
 Client-Side Angular github link: https://github.com/argatw/angular14-project2cp
 
